@@ -1,0 +1,20 @@
+ pragma solidity >=0.4.22 <0.6.0;
+
+contract Datasetprovider{
+	string Organizational_url_Personal_Profile;
+	uint NodeAgreement;
+	bool NodeAgreementRestriction;
+	
+	function SetDataProviderInfo(string memory _Organizational_url_Personal_Profile, uint _NodeAgreement) public {
+		Organizational_url_Personal_Profile = _Organizational_url_Personal_Profile;
+		NodeAgreement = _NodeAgreement;
+		if (NodeAgreement <= 50) {NodeAgreementRestriction = true;
+		}
+		else NodeAgreementRestriction = false;
+	}
+	
+	function GetDataProviderInfo() public view returns (string memory, uint, bool) {
+return (Organizational_url_Personal_Profile, NodeAgreement, NodeAgreementRestriction);	
+	}
+}
+ 

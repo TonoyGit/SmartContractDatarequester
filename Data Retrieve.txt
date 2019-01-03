@@ -1,0 +1,25 @@
+pragma solidity >=0.4.22 <0.6.0;
+ragma solidity >=0.4.22 <0.6.0;
+
+contract DatasetRetrieve{
+	struct UserInfo{
+	    string Organizational_Personal_Profile_url;
+		uint AgreementParcent;
+		bool AccessRestriction;
+    }
+
+	mapping (string => UserInfo ) AllUsers;
+	function SetUserInfo(string memory _Name, string memory _Organizational_Personal_Profile_url,
+	uint _AgreementParcent) public{
+		AllUsers[_Name].Organizational_Personal_Profile_url = _Organizational_Personal_Profile_url;
+		AllUsers[_Name].AgreementParcent = _AgreementParcent;
+		if (AllUsers[_Name].AgreementParcent <= 50) {
+		    AllUsers[_Name].AccessRestriction = true;
+		}
+		else AllUsers[_Name].AccessRestriction = false;
+}
+	function GetUserInfo(string memory _Name) public view returns (string memory, uint, bool){
+		return (AllUsers[_Name].Organizational_Personal_Profile_url, AllUsers[_Name].AgreementParcent,
+		AllUsers[_Name].AccessRestriction);
+	}
+}	
